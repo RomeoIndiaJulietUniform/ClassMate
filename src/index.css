@@ -1,0 +1,46 @@
+:root {
+  /* CSS HEX */
+  --old-rose: #cc8b86ff;
+  --linen: #f9eae1ff;
+  --rose-taupe: #7d4f50ff;
+  --dun: #d1be9cff;
+  --cinereous: #aa998fff;
+
+  /* CSS HSL */
+  --old-rose-hsl: hsla(4, 41%, 66%, 1);
+  --linen-hsl: hsla(22, 67%, 93%, 1);
+  --rose-taupe-hsl: hsla(359, 23%, 40%, 1);
+  --dun-hsl: hsla(38, 37%, 72%, 1);
+  --cinereous-hsl: hsla(22, 14%, 61%, 1);
+
+  /* CSS RGB */
+  --old-rose-rgb: rgba(204, 139, 134, 1);
+  --linen-rgb: rgba(249, 234, 225, 1);
+  --rose-taupe-rgb: rgba(125, 79, 80, 1);
+  --dun-rgb: rgba(209, 190, 156, 1);
+  --cinereous-rgb: rgba(170, 153, 143, 1);
+
+  /* CSS Gradients */
+  --gradient-top: linear-gradient(0deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-right: linear-gradient(90deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-bottom: linear-gradient(180deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-left: linear-gradient(270deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-top-right: linear-gradient(45deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-bottom-right: linear-gradient(135deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-top-left: linear-gradient(225deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-bottom-left: linear-gradient(315deg, var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+  --gradient-radial: radial-gradient(var(--old-rose), var(--linen), var(--rose-taupe), var(--dun), var(--cinereous));
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--linen);
+  color: var(--rose-taupe);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
