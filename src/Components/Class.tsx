@@ -16,7 +16,21 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { SelectChangeEvent } from '@mui/material/Select';
 
-const demoClasses = [
+
+interface ClassData {
+  id: string;
+  type: string;
+  date: string;
+  capacity: number;
+  slots: string[];
+}
+
+interface FormData {
+  classType: string;
+  date: string;
+}
+
+const demoClasses: ClassData[] = [
   { id: '1', type: 'yoga', date: '2024-09-15', capacity: 10, slots: [] },
   { id: '2', type: 'gym', date: '2024-09-16', capacity: 15, slots: [] },
   { id: '3', type: 'dance', date: '2024-09-17', capacity: 20, slots: [] },
@@ -30,9 +44,9 @@ function Class() {
   const [filter, setFilter] = useState<{ type: string; date: string }>({ type: '', date: '' });
   const [page, setPage] = useState<number>(1);
   const [limit] = useState<number>(10);
-  const [classes, setClasses] = useState(demoClasses);
-  const [totalClasses, setTotalClasses] = useState(demoClasses.length);
-  const [formData, setFormData] = useState<{ classType: string; date: string }>({ classType: '', date: '' });
+  const [classes, setClasses] = useState<ClassData[]>(demoClasses);
+  const [totalClasses, setTotalClasses] = useState<number>(demoClasses.length);
+  const [formData, setFormData] = useState<FormData>({ classType: '', date: '' });
 
   useEffect(() => {
     const filteredClasses = demoClasses.filter(c =>
@@ -53,7 +67,7 @@ function Class() {
     setPage(value);
   };
 
-  const handleBooking = (classItem: any) => {
+  const handleBooking = (classItem: ClassData) => {
     const userId = 'demoUser';
     if (classItem.slots.length < classItem.capacity) {
       const updatedClasses = classes.map(c =>
@@ -66,7 +80,7 @@ function Class() {
     }
   };
 
-  const handleCancelBooking = (classItem: any) => {
+  const handleCancelBooking = (classItem: ClassData) => {
     const userId = 'demoUser';
     const updatedClasses = classes.map(c =>
       c.id === classItem.id ? { ...c, slots: c.slots.filter(slot => slot !== userId) } : c
