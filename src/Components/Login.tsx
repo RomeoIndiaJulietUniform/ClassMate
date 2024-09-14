@@ -1,10 +1,55 @@
 import { useState } from 'react';
 import { TextField, Checkbox, Button, Link, Box, Typography, FormControlLabel } from '@mui/material';
 import { User, Lock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import "../Styles/Login.css";
 
 function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      if (isSignUp) {
+        const response = await fetch('http://localhost:3000/api/users/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, username, email, age, password }),
+        });
+        
+        const data = await response.json();
+        if (response.ok) {
+          alert(data.message);
+          setIsSignUp(false);
+        } else {
+          alert(data.message);
+        }
+      } else {
+        const response = await fetch('http://localhost:3000/api/users/signin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+        
+        const data = await response.json();
+        if (response.ok) {
+          localStorage.setItem('token', data.token);
+          navigate('/class'); 
+        } else {
+          alert(data.message);
+        }
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <Box
@@ -47,7 +92,7 @@ function Login() {
         >
           {isSignUp ? 'Sign Up' : 'Welcome Back'}
         </Typography>
-        <form>
+        <form onSubmit={handleSubmit}>
           {isSignUp ? (
             <>
               <Box sx={{ mb: 3 }}>
@@ -56,6 +101,8 @@ function Login() {
                   placeholder="Username"
                   variant="outlined"
                   fullWidth
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   sx={{ mb: 3 }}
                 />
               </Box>
@@ -65,6 +112,8 @@ function Login() {
                   placeholder="Name"
                   variant="outlined"
                   fullWidth
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   sx={{ mb: 3 }}
                 />
               </Box>
@@ -74,6 +123,19 @@ function Login() {
                   placeholder="Email Address"
                   variant="outlined"
                   fullWidth
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  sx={{ mb: 3 }}
+                />
+              </Box>
+              <Box sx={{ mb: 3 }}>
+                <TextField
+                  type="number"
+                  placeholder="Age"
+                  variant="outlined"
+                  fullWidth
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
                   sx={{ mb: 3 }}
                 />
               </Box>
@@ -83,6 +145,8 @@ function Login() {
                   placeholder="Password"
                   variant="outlined"
                   fullWidth
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   sx={{ mb: 3 }}
                 />
               </Box>
@@ -105,6 +169,8 @@ function Login() {
                   placeholder="Email Address"
                   variant="outlined"
                   fullWidth
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     pl: 5,
                     mb: 3,
@@ -129,6 +195,8 @@ function Login() {
                   placeholder="Password"
                   variant="outlined"
                   fullWidth
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   sx={{
                     pl: 5,
                     mb: 3,
