@@ -18,7 +18,7 @@ function Login() {
 
     try {
       if (isSignUp) {
-        const response = await fetch('http://localhost:3000/api/users/signup', {
+        const response = await fetch('http://localhost:10000/api/users/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, username, email, age, password }),
@@ -32,7 +32,7 @@ function Login() {
           alert(data.message);
         }
       } else {
-        const response = await fetch('http://localhost:3000/api/users/signin', {
+        const response = await fetch('http://localhost:10000/api/users/signin', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
