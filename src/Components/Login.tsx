@@ -11,43 +11,27 @@ function Login() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
+  const [users, setUsers] = useState<{ email: string; password: string }[]>([]);
+  // const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      if (isSignUp) {
-        const response = await fetch('http://localhost:10000/api/users/signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, username, email, age, password }),
-        });
-        
-        const data = await response.json();
-        if (response.ok) {
-          alert(data.message);
-          setIsSignUp(false);
-        } else {
-          alert(data.message);
-        }
+    if (isSignUp) {
+      setUsers((prevUsers) => [...prevUsers, { email, password }]);
+      alert('Sign up successful. Please sign in.');
+      setIsSignUp(false);
+    } else {
+      const userExists = users.find((user) => user.email === email && user.password === password);
+      if (userExists) {
+        // setLoggedIn(true);
+        localStorage.setItem('token', 'dummy-token'); 
+        alert('Login successful!');
+        navigate('/class'); 
       } else {
-        const response = await fetch('http://localhost:10000/api/users/signin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        });
-        
-        const data = await response.json();
-        if (response.ok) {
-          localStorage.setItem('token', data.token);
-          navigate('/class'); 
-        } else {
-          alert(data.message);
-        }
+        alert('Invalid credentials!');
       }
-    } catch (error) {
-      console.error('Error:', error);
     }
   };
 
