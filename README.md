@@ -1,50 +1,37 @@
-# React + TypeScript + Vite
+# ClasMate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ClassMate is a web application for booking and managing fitness and wellness classes like yoga, gym, and dance. It allows users to book classes within capacity limits and manage waiting lists for full classes. Users can cancel bookings up to 30 minutes before the class starts, with slots reassigned from the waiting list. The application features a responsive UI with filters and pagination for class management. It includes client-side session handling, test-driven development for reliability, and client-side caching for performance. The project should be well-structured, clean, and professional, with a focus on user-friendly design and efficient API integration.
 
-Currently, two official plugins are available:
+## Local Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run this project locally, follow these steps:
 
-## Expanding the ESLint configuration
+1. **Clone the repository:**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```bash
+   git clone <repository-url>
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+1. **Navigate to the project directory:**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+   ```bash
+   cd <project-directory>
+   ```
+ 
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. **Clone the repository:**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+   ```bash
+   npm install
+    ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. **Clone the repository:**
+
+   ```bash
+    npm run dev
+   ``` 
+
+This will start the development server. You can view the project by opening http://localhost:5173 in your browser.
+
+Live Link -> https://class-mate-three.vercel.app/
+
